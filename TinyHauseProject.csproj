@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07683A71-3855-4011-B4B3-7DBF3A9B44BA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TinyHauseProject</RootNamespace>
+    <AssemblyName>TinyHauseProject</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Veritabani.cs" />
+    <Compile Include="Forms\Admin\AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\AdminDashboard.Designer.cs">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\CevapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\CevapForm.Designer.cs">
+      <DependentUpon>CevapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\IlanDuzenleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\IlanDuzenleForm.Designer.cs">
+      <DependentUpon>IlanDuzenleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\IlanYonetimForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\IlanYonetimForm.Designer.cs">
+      <DependentUpon>IlanYonetimForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\IstatistikForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\IstatistikForm.Designer.cs">
+      <DependentUpon>IstatistikForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\KullaniciDuzenleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\KullaniciDuzenleForm.Designer.cs">
+      <DependentUpon>KullaniciDuzenleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\KullaniciYonetimForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\KullaniciYonetimForm.Designer.cs">
+      <DependentUpon>KullaniciYonetimForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\OdemeRaporForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\OdemeRaporForm.Designer.cs">
+      <DependentUpon>OdemeRaporForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\RezervasyonYonetimForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\RezervasyonYonetimForm.Designer.cs">
+      <DependentUpon>RezervasyonYonetimForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\EvDuzenleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\EvDuzenleForm.Designer.cs">
+      <DependentUpon>EvDuzenleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\EvEkleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\EvEkleForm.Designer.cs">
+      <DependentUpon>EvEkleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\Evlerim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\Evlerim.Designer.cs">
+      <DependentUpon>Evlerim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\EvSahibiDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\EvSahibiDashboard.Designer.cs">
+      <DependentUpon>EvSahibiDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\RezervasyonlarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\RezervasyonlarForm.Designer.cs">
+      <DependentUpon>RezervasyonlarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\YorumlarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvSahibi\YorumlarForm.Designer.cs">
+      <DependentUpon>YorumlarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\EvAraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\EvAraForm.Designer.cs">
+      <DependentUpon>EvAraForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\KiraciDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\KiraciDashboard.Designer.cs">
+      <DependentUpon>KiraciDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\OdemeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\OdemeForm.Designer.cs">
+      <DependentUpon>OdemeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\PopulerEvlerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\PopulerEvlerForm.Designer.cs">
+      <DependentUpon>PopulerEvlerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\RezervasyonlarimForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\RezervasyonlarimForm.Designer.cs">
+      <DependentUpon>RezervasyonlarimForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\RezervasyonYapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\RezervasyonYapForm.Designer.cs">
+      <DependentUpon>RezervasyonYapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kiraci\YorumEkleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kiraci\YorumEkleForm.Designer.cs">
+      <DependentUpon>YorumEkleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ortak\KayitOlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ortak\KayitOlForm.Designer.cs">
+      <DependentUpon>KayitOlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ortak\LoginForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ortak\LoginForm2.Designer.cs">
+      <DependentUpon>LoginForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ev.cs" />
+    <Compile Include="Models\Kullanici.cs" />
+    <Compile Include="Models\Odeme.cs" />
+    <Compile Include="Models\Rezervasyon.cs" />
+    <Compile Include="Models\Yorum.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EvService.cs" />
+    <Compile Include="Services\KullaniciService.cs" />
+    <Compile Include="Services\OdemeService.cs" />
+    <Compile Include="Services\RezervasyonService.cs" />
+    <Compile Include="Services\YorumService.cs" />
+    <Compile Include="Utils\FormValidator.cs" />
+    <Compile Include="Utils\HelperFunctions.cs" />
+    <EmbeddedResource Include="Forms\Admin\AdminDashboard.resx">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\IlanDuzenleForm.resx">
+      <DependentUpon>IlanDuzenleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\IlanYonetimForm.resx">
+      <DependentUpon>IlanYonetimForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\IstatistikForm.resx">
+      <DependentUpon>IstatistikForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\KullaniciDuzenleForm.resx">
+      <DependentUpon>KullaniciDuzenleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\KullaniciYonetimForm.resx">
+      <DependentUpon>KullaniciYonetimForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\OdemeRaporForm.resx">
+      <DependentUpon>OdemeRaporForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\RezervasyonYonetimForm.resx">
+      <DependentUpon>RezervasyonYonetimForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvSahibi\EvDuzenleForm.resx">
+      <DependentUpon>EvDuzenleForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvSahibi\EvEkleForm.resx">
+      <DependentUpon>EvEkleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvSahibi\Evlerim.resx">
+      <DependentUpon>Evlerim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvSahibi\EvSahibiDashboard.resx">
+      <DependentUpon>EvSahibiDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvSahibi\RezervasyonlarForm.resx">
+      <DependentUpon>RezervasyonlarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvSahibi\YorumlarForm.resx">
+      <DependentUpon>YorumlarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\EvAraForm.resx">
+      <DependentUpon>EvAraForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\KiraciDashboard.resx">
+      <DependentUpon>KiraciDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\OdemeForm.resx">
+      <DependentUpon>OdemeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\PopulerEvlerForm.resx">
+      <DependentUpon>PopulerEvlerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\RezervasyonlarimForm.resx">
+      <DependentUpon>RezervasyonlarimForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\RezervasyonYapForm.resx">
+      <DependentUpon>RezervasyonYapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kiraci\YorumEkleForm.resx">
+      <DependentUpon>YorumEkleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ortak\KayitOlForm.resx">
+      <DependentUpon>KayitOlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ortak\LoginForm2.resx">
+      <DependentUpon>LoginForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
