@@ -168,6 +168,7 @@
             this.txtBaslikAra.Name = "txtBaslikAra";
             this.txtBaslikAra.Size = new System.Drawing.Size(312, 30);
             this.txtBaslikAra.TabIndex = 4;
+            this.txtBaslikAra.TextChanged += new System.EventHandler(this.txtBaslikAra_TextChanged);
             this.txtBaslikAra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBaslikAra_KeyDown);
             // 
             // lblAra
