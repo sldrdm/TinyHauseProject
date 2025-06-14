@@ -2,8 +2,8 @@
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using TinyHauseProject.Config;
+using TinyHauseProject.Forms.Kiraci;
 using TinyHauseProject.Models;
-using TinyHauseProject.Services;
 
 namespace TinyHauseProject.Forms.Kiraci
 {
@@ -36,7 +36,6 @@ namespace TinyHauseProject.Forms.Kiraci
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -46,16 +45,10 @@ namespace TinyHauseProject.Forms.Kiraci
 
         private void btnHesapla_Click(object sender, EventArgs e)
         {
-           
-
             DateTime baslangic = dtpBaslangic.Value.Date;
             DateTime bitis = dtpBitis.Value.Date;
 
-            if (bitis <= baslangic)
-            {
-                MessageBox.Show("Bitiş tarihi, başlangıç tarihinden sonra olmalıdır.");
-                return;
-            }
+           
 
             int gunSayisi = (bitis - baslangic).Days;
 
@@ -63,13 +56,14 @@ namespace TinyHauseProject.Forms.Kiraci
             {
                 using (SqlConnection conn = Veritabani.BaglantiGetir())
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT Fiyat FROM dbo.Evler WHERE EvID = @EvID", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT Fiyat FROM Evler WHERE EvID = @EvID", conn);
                     cmd.Parameters.AddWithValue("@EvID", evID);
-                    decimal fiyat = Convert.ToDecimal(cmd.ExecuteScalar());
 
+                    decimal fiyat = Convert.ToDecimal(cmd.ExecuteScalar());
                     decimal toplamTutar = gunSayisi * fiyat;
+
                     lblTutar.Text = $"Toplam Tutar: {toplamTutar:C2}";
-                    lblTutar.Tag = toplamTutar; // Tutarı sakla
+                    lblTutar.Tag = toplamTutar; // saklama
                 }
             }
             catch (Exception ex)
@@ -89,6 +83,12 @@ namespace TinyHauseProject.Forms.Kiraci
                 return;
             }
 
+            if (bitis <= baslangic)
+            {
+                MessageBox.Show("Bitiş tarihi, başlangıç tarihinden sonra olmalıdır.");
+                return;
+            }
+
             try
             {
                 using (SqlConnection conn = Veritabani.BaglantiGetir())
@@ -98,34 +98,68 @@ namespace TinyHauseProject.Forms.Kiraci
                     int evVarMi = (int)checkEv.ExecuteScalar();
                     if (evVarMi == 0)
                     {
-                        MessageBox.Show("Gelen EvID: " + evID);
                         MessageBox.Show("Seçili ev bulunamadı. Lütfen tekrar deneyin.");
                         return;
                     }
-                    SqlCommand rezervasyonCmd = new SqlCommand(@"
-                        INSERT INTO Rezervasyonlar (KiraciID, EvID, BaslangicTarihi, BitisTarihi)
-                        VALUES (@KiraciID, @EvID, @Baslangic, @Bitis)", conn);
 
-                    rezervasyonCmd.Parameters.AddWithValue("@KiraciID", kullaniciID);
-                    rezervasyonCmd.Parameters.AddWithValue("@EvID", evID);
-                    rezervasyonCmd.Parameters.AddWithValue("@Baslangic", baslangic);
-                    rezervasyonCmd.Parameters.AddWithValue("@Bitis", bitis);
+                    // 1. INSERT komutu
+                    SqlCommand insertCmd = new SqlCommand(@"
+                    INSERT INTO Rezervasyonlar 
+                        (KiraciID, EvID, BaslangicTarihi, BitisTarihi, Aktif, RezervasyonTarihi)
+                    VALUES 
+                        (@KiraciID, @EvID, @Baslangic, @Bitis, 1, GETDATE());", conn);
 
-                    rezervasyonCmd.ExecuteNonQuery();
+                    insertCmd.Parameters.AddWithValue("@KiraciID", kullaniciID);
+                    insertCmd.Parameters.AddWithValue("@EvID", evID);
+                    insertCmd.Parameters.AddWithValue("@Baslangic", baslangic);
+                    insertCmd.Parameters.AddWithValue("@Bitis", bitis);
+                    insertCmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Rezervasyon başarıyla oluşturuldu. Ödeme ve onay bilgisi yakında eklenecek.");
+
+                    // 2. En son ID'yi al
+                    SqlCommand idCmd = new SqlCommand(@"
+                    SELECT MAX(RezervasyonID) 
+                    FROM Rezervasyonlar 
+                    WHERE KiraciID = @KiraciID AND EvID = @EvID AND BaslangicTarihi = @Baslangic AND BitisTarihi = @Bitis", conn);
+
+                    idCmd.Parameters.AddWithValue("@KiraciID", kullaniciID);
+                    idCmd.Parameters.AddWithValue("@EvID", evID);
+                    idCmd.Parameters.AddWithValue("@Baslangic", baslangic);
+                    idCmd.Parameters.AddWithValue("@Bitis", bitis);
+
+                    object rezIDobj = idCmd.ExecuteScalar();
+
+                    if (rezIDobj == DBNull.Value || rezIDobj == null)
+                    {
+                        MessageBox.Show("Rezervasyon ID alınamadı. Lütfen tekrar deneyin.");
+                        return;
+                    }
+
+                    int rezervasyonID = Convert.ToInt32(rezIDobj);
+
+                    decimal toplamTutar = (decimal)lblTutar.Tag;
+                    string evBilgi = lblEvBilgisi.Text;
+
+                    SqlCommand odemeInsert = new SqlCommand(@"
+                    INSERT INTO Odemeler (RezervasyonID, Tutar, OdemeDurumu, Aktif)
+                    VALUES (@rezID, @tutar, 0, 1)", conn);
+                    odemeInsert.Parameters.AddWithValue("@rezID", rezervasyonID);
+                    odemeInsert.Parameters.AddWithValue("@tutar", toplamTutar);
+                    odemeInsert.ExecuteNonQuery();
+
+                    OdemeForm odemeForm = new OdemeForm(rezervasyonID, evBilgi, toplamTutar);
+                    this.Hide();
+                    odemeForm.ShowDialog();
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Hata detay: " + ex.ToString());
                 MessageBox.Show("Rezervasyon yapılırken hata oluştu: " + ex.Message);
             }
         }
 
-        private void RezervasyonYapForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
+

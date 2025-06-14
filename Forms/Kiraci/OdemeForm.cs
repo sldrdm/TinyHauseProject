@@ -8,18 +8,23 @@ namespace TinyHauseProject.Forms.Kiraci
     public partial class OdemeForm : Form
     {
         private int rezervasyonId;
+        private decimal tutar;
 
         public OdemeForm(int rezervasyonId, string evBilgi, decimal tutar)
         {
             InitializeComponent();
             this.rezervasyonId = rezervasyonId;
-            lblEvBilgi.Text = "Ev: " + evBilgi;
+            this.tutar = tutar;
+
+            lblEvBilgi.Text = evBilgi;
             txtTutar.Text = tutar.ToString("N2");
         }
 
-        private void vet(object sender, EventArgs e)
+        private void btnOdemeYap_Click(object sender, EventArgs e)
         {
             lblMesaj.Text = "";
+
+            // Validasyon
             if (string.IsNullOrWhiteSpace(txtKartAdSoyad.Text) ||
                 string.IsNullOrWhiteSpace(txtKartNo.Text) ||
                 string.IsNullOrWhiteSpace(txtSKT.Text) ||
@@ -45,16 +50,24 @@ namespace TinyHauseProject.Forms.Kiraci
             {
                 using (SqlConnection conn = Veritabani.BaglantiGetir())
                 {
-                    string query = "INSERT INTO Odemeler (RezervasyonID, Tutar, OdemeDurumu) VALUES (@rezId, 0, 1)";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@rezId", rezervasyonId);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                    // Önce varsa sil → sonra INSERT
+                    SqlCommand deleteIfExists = new SqlCommand("DELETE FROM Odemeler WHERE RezervasyonID = @rezId", conn);
+                    deleteIfExists.Parameters.AddWithValue("@rezId", rezervasyonId);
+                    deleteIfExists.ExecuteNonQuery();
 
-                MessageBox.Show("Ödeme başarıyla tamamlandı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                    // INSERT işlemi
+                    SqlCommand cmd = new SqlCommand(@"
+                        INSERT INTO Odemeler (RezervasyonID, Tutar, OdemeDurumu, OdemeTarihi, Aktif)
+                        VALUES (@rezId, @tutar, 1, GETDATE(), 1)", conn);
+
+                    cmd.Parameters.AddWithValue("@rezId", rezervasyonId);
+                    cmd.Parameters.AddWithValue("@tutar", tutar);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Ödeme başarıyla tamamlandı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -62,9 +75,9 @@ namespace TinyHauseProject.Forms.Kiraci
             }
         }
 
-        private void btnOdemeYap_Click(object sender, EventArgs e)
+        private void OdemeForm_Load(object sender, EventArgs e)
         {
-
+            // Gerekirse başlangıçta işlem yapılabilir
         }
     }
 }

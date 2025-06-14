@@ -80,7 +80,7 @@
             // 
             this.txtKartAdSoyad.Location = new System.Drawing.Point(163, 127);
             this.txtKartAdSoyad.Name = "txtKartAdSoyad";
-            this.txtKartAdSoyad.Size = new System.Drawing.Size(100, 22);
+            this.txtKartAdSoyad.Size = new System.Drawing.Size(160, 22);
             this.txtKartAdSoyad.TabIndex = 5;
             // 
             // lblKartNo
@@ -94,10 +94,10 @@
             // 
             // txtKartNo
             // 
-            this.txtKartNo.Location = new System.Drawing.Point(163, 170);
+            this.txtKartNo.Location = new System.Drawing.Point(163, 167);
             this.txtKartNo.MaxLength = 16;
             this.txtKartNo.Name = "txtKartNo";
-            this.txtKartNo.Size = new System.Drawing.Size(100, 22);
+            this.txtKartNo.Size = new System.Drawing.Size(160, 22);
             this.txtKartNo.TabIndex = 7;
             // 
             // lblSKT
@@ -114,7 +114,7 @@
             this.txtSKT.Location = new System.Drawing.Point(163, 207);
             this.txtSKT.MaxLength = 5;
             this.txtSKT.Name = "txtSKT";
-            this.txtSKT.Size = new System.Drawing.Size(100, 22);
+            this.txtSKT.Size = new System.Drawing.Size(80, 22);
             this.txtSKT.TabIndex = 9;
             // 
             // lblCVV
@@ -132,7 +132,7 @@
             this.txtCVV.MaxLength = 3;
             this.txtCVV.Name = "txtCVV";
             this.txtCVV.PasswordChar = '*';
-            this.txtCVV.Size = new System.Drawing.Size(100, 22);
+            this.txtCVV.Size = new System.Drawing.Size(80, 22);
             this.txtCVV.TabIndex = 11;
             // 
             // btnOdemeYap
@@ -148,7 +148,7 @@
             // 
             this.lblMesaj.AutoSize = true;
             this.lblMesaj.ForeColor = System.Drawing.Color.Red;
-            this.lblMesaj.Location = new System.Drawing.Point(30, 330);
+            this.lblMesaj.Location = new System.Drawing.Point(30, 360);
             this.lblMesaj.Name = "lblMesaj";
             this.lblMesaj.Size = new System.Drawing.Size(0, 16);
             this.lblMesaj.TabIndex = 13;
@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 380);
+            this.ClientSize = new System.Drawing.Size(400, 400);
             this.Controls.Add(this.lblBaslik);
             this.Controls.Add(this.lblEvBilgi);
             this.Controls.Add(this.lblTutar);
@@ -174,9 +174,9 @@
             this.Controls.Add(this.lblMesaj);
             this.Name = "OdemeForm";
             this.Text = "Ödeme Ekranı";
+            this.Load += new System.EventHandler(this.OdemeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Label lblBaslik;

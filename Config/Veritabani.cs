@@ -8,7 +8,7 @@ namespace TinyHauseProject.Config
     public static class Veritabani
     {
         // SQL Server bağlantı cümlesi
-        private static readonly string connectionString = "Server=SELDAERDEM\\SQLEXPRESS;Database=TinyHouse;Trusted_Connection=True;";
+        private static readonly string connectionString = "Server=SELDAERDEM\\SQLEXPRESS;Database=TinyHouse;Trusted_Connection=True;MultipleActiveResultSets=true;";
 
         /// <summary>
         /// Yeni bir açık SqlConnection döner. Kullandıktan sonra kapatmayı unutma!

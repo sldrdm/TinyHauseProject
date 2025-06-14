@@ -39,7 +39,6 @@ namespace TinyHauseProject.Forms.Kiraci
                             COUNT(y.YorumID) AS YorumSayisi
                         FROM Evler e
                         LEFT JOIN Yorumlar y ON e.EvID = y.EvID
-                        WHERE e.Aktif = 1
                         GROUP BY e.EvID, e.Baslik, e.Konum, e.Fiyat
                         ORDER BY OrtalamaPuan DESC, YorumSayisi DESC";
 

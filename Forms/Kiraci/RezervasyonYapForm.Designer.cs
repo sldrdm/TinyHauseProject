@@ -122,7 +122,7 @@
             this.Controls.Add(this.btnRezervasyonYap);
             this.Name = "RezervasyonYapForm";
             this.Text = "Rezervasyon Yap";
-            this.Load += new System.EventHandler(this.RezervasyonYapForm_Load_1);
+            this.Load += new System.EventHandler(this.RezervasyonYapForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
