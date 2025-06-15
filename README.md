@@ -63,3 +63,24 @@ cd TinyHauseProject
 # 3. Bağlantı dizesini (connection string) Config/Veritabani.cs içinden kendi veritabanına göre güncelle
 # 4. SQL Server'da /docs/ klasöründeki scriptlerle veritabanı tablolarını oluştur
 # 5. Projeyi build et ve başlat
+
+
+## 💬 Contributors
+
+<div style="display: flex;">
+  <a href="https://github.com/BatuhanARK" >
+    <img src="https://github.com/BatuhanARK.png" width="100" height="100" style="border-radius: 50%; object-fit: cover;" />
+    <strong>&nbsp;</strong>
+  </a>
+
+  <a href="https://github.com/ceyda125" >
+    <img src="https://github.com/ceyda125.png" width="100" height="100" style="border-radius: 50%; object-fit: cover;" />
+    <strong>&nbsp;</strong>
+  </a>
+
+  <a href="https://github.com/sldrdm" >
+    <img src="https://github.com/sldrdm.png" width="100" height="100" style="border-radius: 50%; object-fit: cover;" />
+  </a>
+</div>
+
+[@BatuhanARK](https://github.com/BatuhanARK) &nbsp;&nbsp;[@ceyda125](https://github.com/ceyda125) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[@sldrdm](https://github.com/sldrdm)
