@@ -1,10 +1,6 @@
 # TinyHouseProject
 
 <!-- Banner veya logo -->
-<p align="center">
-  <img src="https://raw.githubusercontent.com/sldrdm/TinyHauseProject/main/assets/banner.png" width="600" alt="Tiny House Project Banner"/>
-</p>
-
 <h1 align="center">🏡 TinyHauseProject</h1>
 <p align="center">
   <b>Tiny House Sahipleri ve Kiracılar İçin Modern Rezervasyon ve Yönetim Sistemi</b><br>
@@ -26,7 +22,7 @@
   <img src="https://raw.githubusercontent.com/sldrdm/TinyHauseProject/main/assets/demo.gif" width="80%" alt="Demo"/>
 </p>
 
-**TinyHauseProject**, tiny house sahipleri ve kiracıları arasında güvenli, kolay ve hızlı rezervasyon yapmayı amaçlayan kapsamlı bir masaüstü uygulamasıdır.  
+**TinyHauseProject**, tiny house sahipleri ve kiracıları arasında güvenli, kolay ve hızlı rezervasyon yapmayı amaçlayan kapsamlı bir masaüstü uygulamasıdır.
 Rol bazlı yönetim paneliyle; **admin**, **ev sahibi** ve **kiracı** için ayrı deneyimler sunar.
 
 ---
